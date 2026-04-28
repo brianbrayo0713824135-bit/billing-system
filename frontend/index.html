@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapito WiFi Services</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+          <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+          <circle cx="12" cy="20" r="1"/>
+        </svg>
+        <h1>Mapito WiFi</h1>
+      </div>
+      <p class="tagline">Fast. Affordable. Reliable.</p>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showPackages()">Buy Package</button>
+      <button class="tab-btn" onclick="showLogin()">Login with Code</button>
+    </div>
+
+    <!-- Packages Section -->
+    <section id="packages-section" class="section">
+      <h2 class="section-title">Choose Your Package</h2>
+      <div id="packages-grid" class="packages-grid">
+        <!-- Packages loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment-section" class="section hidden">
+      <button class="back-btn" onclick="backToPackages()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back
+      </button>
+      
+      <div class="payment-card">
+        <div class="selected-package">
+          <h3>Selected Package</h3>
+          <div id="selected-package-info" class="selected-info">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <div class="payment-instructions">
+          <h3>Pay with M-Pesa</h3>
+          <div class="till-number">
+            <span class="label">Till Number</span>
+            <div class="till-display">
+              <span class="till-value">5441898</span>
+              <button class="copy-btn" onclick="copyTill()">Copy</button>
+            </div>
+          </div>
+          <ol class="steps">
+            <li>Go to <strong>M-Pesa</strong> on your phone</li>
+            <li>Select <strong>Lipa Na M-Pesa</strong></li>
+            <li>Choose <strong>Buy Goods & Services</strong></li>
+            <li>Enter Till Number: <strong>5441898</strong></li>
+            <li>Enter Amount: <strong id="payment-amount">0/-</strong></li>
+            <li>Enter your M-Pesa PIN</li>
+            <li>Wait for confirmation SMS</li>
+          </ol>
+        </div>
+
+        <form id="payment-form" class="payment-form">
+          <div class="form-group">
+            <label for="phone">Your Phone Number</label>
+            <input type="tel" id="phone" placeholder="07XX XXX XXX" required pattern="^0[17][0-9]{8}$|^254[0-9]{9}$">
+            <small>We'll use this to verify your payment</small>
+          </div>
+          <button type="submit" class="submit-btn">I've Completed Payment</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Waiting Section -->
+    <section id="waiting-section" class="section hidden">
+      <div class="waiting-card">
+        <div class="spinner"></div>
+        <h2>Verifying Payment...</h2>
+        <p id="payment-status">Please wait while we confirm your M-Pesa payment.</p>
+        <div class="waiting-timer">
+          <span class="timer-dot"></span>
+          <span class="timer-dot"></span>
+          <span class="timer-dot"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Section -->
+    <section id="success-section" class="section hidden">
+      <div class="success-card">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <h2>Payment Approved!</h2>
+        <p>Your WiFi login code is ready:</p>
+        
+        <div class="voucher-display">
+          <span id="voucher-code" class="voucher-code">MAP-XXXXXX</span>
+          <button class="copy-btn copy-voucher" onclick="copyVoucher()">Copy</button>
+        </div>
+        
+        <div id="voucher-info" class="voucher-info">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="success-actions">
+          <button class="action-btn primary" onclick="showPackages()">Buy Another</button>
+          <button class="action-btn secondary" onclick="showLogin()">Login Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login-section" class="section hidden">
+      <div class="login-card">
+        <h2>Login with Voucher</h2>
+        <p>Enter your MAP-XXXXXX code to connect to WiFi</p>
+        
+        <form id="login-form" class="login-form">
+          <div class="form-group">
+            <label for="login-code">Voucher Code</label>
+            <input type="text" id="login-code" placeholder="MAP-XXXXXX" required maxlength="10" pattern="^MAP-[A-HJ-NP-Z2-9]{6}$" style="text-transform: uppercase;">
+          </div>
+          <button type="submit" class="submit-btn">Connect to WiFi</button>
+        </form>
+
+        <div class="login-help">
+          <p>Don't have a code? <button class="link-btn" onclick="showPackages()">Buy a package</button></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Mapito WiFi Services. All rights reserved.</p>
+      <p>Need help? Contact support.</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
