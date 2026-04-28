@@ -1,10 +1,10 @@
 -- Mapito WiFi Services - Supabase Database Schema
 -- Run this in the Supabase SQL Editor
 
--- Enable UUID extension
+-- FIRST: Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Packages table
+-- SECOND: Create tables
 CREATE TABLE packages (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name TEXT NOT NULL,
@@ -14,7 +14,6 @@ CREATE TABLE packages (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Payments table
 CREATE TABLE payments (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     phone_number TEXT NOT NULL,
@@ -27,7 +26,6 @@ CREATE TABLE payments (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Vouchers table
 CREATE TABLE vouchers (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     code TEXT UNIQUE NOT NULL,
@@ -41,7 +39,6 @@ CREATE TABLE vouchers (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- SMS logs table
 CREATE TABLE sms_logs (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     sender TEXT,
