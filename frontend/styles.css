@@ -154,13 +154,64 @@ body {
 
 .package-card:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--shadow);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 30px var(--shadow);
 }
 
 .package-card.selected {
   border-color: var(--accent);
   background: var(--accent-glow);
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* New animations for UI elements */
+.package-card {
+  animation: cardEntrance 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes cardEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-title {
+  animation: textFadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+@keyframes textFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.submit-btn {
+  animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+  70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.voucher-display {
+  animation: bounceIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .package-name {

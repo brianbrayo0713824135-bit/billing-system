@@ -53,6 +53,7 @@ CREATE TABLE sms_logs (
 -- Insert default packages
 INSERT INTO packages (name, data_limit, duration_minutes, price) 
 VALUES 
+('Test 1 Min', NULL, 1, 1),
 ('1GB / 2hrs', '1GB', 120, 10),
 ('Unlimited 1hr', NULL, 60, 20),
 ('Unlimited 2hrs', NULL, 120, 30),
