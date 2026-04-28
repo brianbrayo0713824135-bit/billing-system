@@ -6,7 +6,15 @@
       "use": "@vercel/node"
     },
     {
-      "src": "frontend/**",
+      "src": "frontend/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "frontend/styles.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "frontend/app.js",
       "use": "@vercel/static"
     }
   ],
