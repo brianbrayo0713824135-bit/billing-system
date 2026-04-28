@@ -2,6 +2,10 @@
 
 A production-ready full-stack WiFi hotspot billing system using voucher login codes and automatic M-Pesa payment approval via SMS parsing.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrianbrayo0713824135-bit%2Fbilling-system)
+
+**Live Demo:** [https://billing-system.vercel.app](https://billing-system.vercel.app) *(after deployment)*
+
 ## Features
 
 - **Voucher-based login**: Users receive a unique `MAP-XXXXXX` code after payment
