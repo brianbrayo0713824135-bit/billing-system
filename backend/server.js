@@ -143,8 +143,8 @@ async function createVoucher(payment) {
 // Send SMS via SMS Gate Cloud
 async function sendSMS(phone, message) {
   try {
-    const server = process.env.SMS_GATE_SERVER || 'api.sms-gate.app';
-    const url = `https://${server}/api/3rdparty/v1/message`;
+    const server = process.env.SMS_GATE_SERVER || 'api.sms-gate.app:443';
+    const url = `https://${server}/api/v1/messages`;
     const payload = {
       to: phone,
       message: message,
@@ -176,8 +176,8 @@ async function sendSMS(phone, message) {
 // Fetch messages from SMS Gate Cloud
 async function fetchSMSMessages() {
   try {
-    const server = process.env.SMS_GATE_SERVER || 'api.sms-gate.app';
-    const url = `https://${server}/api/3rdparty/v1/message`;
+    const server = process.env.SMS_GATE_SERVER || 'api.sms-gate.app:443';
+    const url = `https://${server}/api/v1/messages`;
     const auth = Buffer.from(`${process.env.SMS_GATE_USERNAME}:${process.env.SMS_GATE_PASSWORD}`).toString('base64');
 
     const response = await axios.get(url, {
